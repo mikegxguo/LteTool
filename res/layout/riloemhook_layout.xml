@@ -1,0 +1,169 @@
+﻿<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/mylabel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ril_oem_choose" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_api"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mylabel"
+        android:orientation="vertical" >
+
+        <RadioButton
+            android:id="@+id/radio_api1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_api1" />
+
+        <RadioButton
+            android:id="@+id/radio_api2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_api2" />
+
+        <RadioButton
+            android:id="@+id/radio_api3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_api3" />
+
+        <RadioButton
+            android:id="@+id/radio_api4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_api4" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/edit_cmdstr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radio_group_api"
+        android:layout_marginRight="20dip"
+        android:background="@android:drawable/editbox_background"
+        android:minWidth="200dip"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_cmdstr"
+        android:clickable="true"
+        android:onClick="onRun"
+        android:text="@string/radio_run" />
+
+    <TextView
+        android:id="@+id/label_response"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/run"
+        android:text="@string/ril_oem_response" />
+
+    <EditText
+        android:id="@+id/edit_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_response"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:background="#000000"
+        android:editable="false"
+        android:minHeight="50dip"
+        android:minWidth="200dip"
+        android:textColor="#FFFFFF"
+        android:textSize="12px" />
+    <Button
+        android:id="@+id/LogUSIO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_response"
+        android:clickable="true"
+        android:onClick="onLogUSIO"
+        android:text="@string/log_usio" />
+
+    <Button
+        android:id="@+id/LogEnabled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LogUSIO"
+        android:clickable="true"
+        android:onClick="onLogEnabled"
+        android:text="@string/log_enabled" />
+    <Button
+        android:id="@+id/LogStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LogEnabled"
+        android:clickable="true"
+        android:onClick="onLogStart"
+        android:text="@string/log_start" />
+    <Button
+        android:id="@+id/LogStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LogEnabled"
+        android:layout_toRightOf="@+id/LogStart"
+        android:clickable="true"
+        android:onClick="onLogStop"
+        android:text="@string/log_stop" />
+    <Button
+        android:id="@+id/LogAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LogEnabled"
+        android:layout_toRightOf="@+id/LogStop"
+        android:clickable="true"
+        android:onClick="onLogAuto"
+        android:text="@string/log_auto" />
+    <Button
+        android:id="@+id/LogDisabled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LogStart"
+        android:clickable="true"
+        android:onClick="onLogDisabled"
+        android:text="@string/log_disabled" />
+    <Button
+        android:id="@+id/Disconnect3G"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LogDisabled"
+        android:clickable="true"
+        android:onClick="onDisconnect3G"
+        android:text="@string/disconnect_3g" />
+    <Button
+        android:id="@+id/Connect3G"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LogDisabled"
+        android:layout_toRightOf="@+id/Disconnect3G"
+        android:clickable="true"
+        android:onClick="onConnect3G"
+        android:text="@string/connect_3g" />
+    <Button
+        android:id="@+id/EnableDataWkup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Disconnect3G"
+        android:clickable="true"
+        android:onClick="onEnableDataWkup"
+        android:text="@string/enable_data_wkup" />
+    <Button
+        android:id="@+id/DisableDataWkup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Disconnect3G"
+        android:layout_toRightOf="@+id/EnableDataWkup"
+        android:clickable="true"
+        android:onClick="onDisableDataWkup"
+        android:text="@string/disable_data_wkup" />
+
+</RelativeLayout>

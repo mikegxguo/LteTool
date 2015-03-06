@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+	<RelativeLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical" >
+	    
+            <TextView
+                android:id="@+id/psensor"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dip"
+                android:text="@string/psensor_status" />
+
+	    <TextView
+	        android:id="@+id/mylabel"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+                android:layout_below="@+id/psensor"
+                android:textSize="20dip"
+	        android:text="@string/strAT_UDCONF" />
+
+	    <TextView
+	        android:id="@+id/mylabe2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/mylabel"
+	        android:text="@string/strGPRS" />
+	
+	    <EditText
+	        android:id="@+id/edit_GPRS_profile"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="200dip"
+	        android:layout_alignTop="@+id/mylabe2"
+	        android:layout_marginRight="20dip"
+            android:hint="@string/str_hint_0"
+            android:inputType="number"
+            android:imeOptions="actionNext"	        
+	        android:background="@android:drawable/editbox_background"
+	        android:minWidth="20dip"
+	        android:textColor="#000000" />
+	
+	    <TextView
+	        android:id="@+id/mylabe3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/edit_GPRS_profile"
+	        android:text="@string/strEDGE" />
+		
+	    <EditText
+	        android:id="@+id/edit_EDGE_profile"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="200dip"
+	        android:layout_alignTop="@+id/mylabe3"
+	        android:layout_marginRight="20dip"
+            android:hint="@string/str_hint_0"
+            android:inputType="number"
+            android:imeOptions="actionNext"	        
+	        android:background="@android:drawable/editbox_background"
+	        android:minWidth="20dip"
+	        android:textColor="#000000" />
+	    
+           <View
+	        android:id="@+id/space"
+                android:layout_width="match_parent"
+                android:layout_height="10dip"
+	        android:layout_below="@+id/edit_EDGE_profile" />
+        	
+	    <TextView
+	        android:id="@+id/mylabe4"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/space"
+                android:textSize="20dip"
+	        android:text="@string/strAT_MAXPWR" />
+	    
+	    <TextView
+	        android:id="@+id/mylabe5"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/mylabe4"
+	        android:text="@string/str3GPowerRed" />
+	
+	    <EditText
+	        android:id="@+id/edit_3G"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="250dip"
+	        android:layout_alignTop="@+id/mylabe5"
+	        android:layout_marginRight="20dip"
+            android:hint="@string/str_hint_1"
+            android:inputType="number"
+            android:imeOptions="actionNext"	        
+	        android:background="@android:drawable/editbox_background"
+	        android:minWidth="20dip"
+	        android:textColor="#000000" />
+	    
+	    <TextView
+	        android:id="@+id/mylabe6"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/edit_3G"
+	        android:text="@string/str2GPowerRed850" />
+	
+	    <EditText
+	        android:id="@+id/edit_2G_850"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="250dip"
+	        android:layout_alignTop="@+id/mylabe6"
+	        android:layout_marginRight="20dip"
+            android:hint="@string/str_hint_2"
+            android:inputType="number"
+            android:imeOptions="actionNext"	        
+	        android:background="@android:drawable/editbox_background"
+	        android:minWidth="20dip"
+	        android:textColor="#000000" />
+	    
+	    
+	    <TextView
+	        android:id="@+id/mylabe7"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/edit_2G_850"
+	        android:text="@string/str2GPowerRed900" />
+	
+	    <EditText
+	        android:id="@+id/edit_2G_900"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="250dip"
+	        android:layout_alignTop="@+id/mylabe7"
+	        android:layout_marginRight="20dip"
+            android:hint="@string/str_hint_2"
+            android:inputType="number"
+            android:imeOptions="actionNext"	        
+	        android:background="@android:drawable/editbox_background"
+	        android:minWidth="20dip"
+	        android:textColor="#000000" />
+	    
+	    <TextView
+	        android:id="@+id/mylabe8"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/edit_2G_900"
+	        android:text="@string/str2GPowerRed1800" />
+	
+	    <EditText
+	        android:id="@+id/edit_2G_1800"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="250dip"
+	        android:layout_alignTop="@+id/mylabe8"
+	        android:layout_marginRight="20dip"
+            android:hint="@string/str_hint_2"
+            android:inputType="number"
+            android:imeOptions="actionNext"	        
+	        android:background="@android:drawable/editbox_background"
+	        android:minWidth="20dip"
+	        android:textColor="#000000" />
+	    
+	    <TextView
+	        android:id="@+id/mylabe9"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/edit_2G_1800"
+	        android:text="@string/str2GPowerRed1900" />
+	
+	
+	    <EditText
+	        android:id="@+id/edit_2G_1900"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="250dip"
+	        android:layout_alignTop="@+id/mylabe9"
+	        android:layout_marginRight="20dip"
+            android:hint="@string/str_hint_2"
+            android:inputType="number"
+            android:imeOptions="actionDone"	        
+	        android:background="@android:drawable/editbox_background"
+	        android:minWidth="20dip"
+	        android:textColor="#000000" />
+	    
+	    <Button
+	        android:id="@+id/run"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/edit_2G_1900"
+	        android:clickable="true"
+	        android:onClick="onRun"
+	        android:text="@string/strAT_UDCONF_run" />
+	
+	    <TextView
+	        android:id="@+id/label_response"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/run"
+	        android:text="@string/ril_oem_response" />
+	
+	    <EditText
+	        android:id="@+id/edit_response"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/label_response"
+	        android:layout_marginLeft="20dip"
+	        android:layout_marginRight="20dip"
+	        android:background="#000000"
+	        android:editable="false"
+	        android:minHeight="50dip"
+	        android:minWidth="200dip"
+	        android:textColor="#FFFFFF"
+	        android:textSize="12px" />		    
+	</RelativeLayout>
+</ScrollView>

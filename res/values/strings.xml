@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, LTEToolActivity!</string>
+    <string name="app_name">LTETool</string>
+    <string name="strTesting">Testing</string>
+    <string name="failed_to_resolve_activity">failed to resolve activity</string>
+
+    <string name="strPowerOn">Power on LTE module</string>
+    <string name="strPowerOff">Power off LTE module</string>
+
+	<!-- For RIL OEM HOOK testing -->
+	<string name="testing_RIL_OEMHook">RIL OEM Hook Test</string>
+	<string name="ril_oem_choose">Choose a RIL OEM Hook API to test:</string>
+	<string name="radio_api1">API 1 (datalen=0)</string>
+	<string name="radio_api2">API 2 (datalen=1)</string>
+	<string name="radio_api3">API 3 (datalen=6)</string>
+	<string name="radio_api4">API 4 Type command :</string>
+	<string name="radio_run">RUN</string>
+        <string name="log_usio">1. set usb io</string>
+	<string name="log_enabled">2. Enable trace port</string>
+        <string name="log_start">3. Log start</string>
+        <string name="log_stop">4. Log stop</string>
+        <string name="log_auto">5. Log Automatically</string>
+        <string name="log_disabled">6. Disable trace port</string>
+
+        <string name="disconnect_3g">Disconnect 3G</string>
+        <string name="connect_3g">Connect 3G</string>
+        <string name="enable_data_wkup">Enable Data WKUP</string>
+        <string name="disable_data_wkup">Disable Data WKUP</string>
+
+	<!-- For AT command(Power reducing)  -->
+	<string name="testing_RF_Power_Reduction">GSM/3G RF Power Reduction</string>
+        <string name="psensor_status">PSensor Status:none</string>
+	<string name="strAT_UDCONF">AT+UDCONF: Multi-Slot Power Reduction profile setting</string>
+	<string name="strGPRS">1. GPRS profile, range(0~3)</string>
+	<string name="strEDGE">2. EDGE profile, range(0~3)</string>
+	<string name="strAT_MAXPWR">AT+UMAXPWR: Custom Power Reduction setting(Octal dBm=0.125dBm)</string>
+	<string name="str3GPowerRed">1. All 3G band, range(0~32)</string>
+	<string name="str2GPowerRed850">2. 2G band(850MHz), range(0~48)</string>
+	<string name="str2GPowerRed900">3. 2G band(900MHz), range(0~48)</string>
+	<string name="str2GPowerRed1800">4. 2G band(1800MHz), range(0~48)</string>
+	<string name="str2GPowerRed1900">5. 2G band(1900MHz), range(0~48)</string>
+	<string name="str_hint_0">0-3</string>
+	<string name="str_hint_1">0-32</string>
+	<string name="str_hint_2">0-48</string>
+	<string name="str_hint_3"></string>
+	<string name="strAT_UDCONF_run">Save parameter of AT command</string>
+	<string name="ril_oem_response">Module response:</string>
+
+</resources>
