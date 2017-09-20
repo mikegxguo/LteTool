@@ -1,7 +1,7 @@
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_JAVA_LIBRARIES := bouncycastle framework#telephony-common
+LOCAL_JAVA_LIBRARIES := bouncycastle framework telephony-common
 LOCAL_STATIC_JAVA_LIBRARIES := guava
 
 LOCAL_MODULE_TAGS := optional
