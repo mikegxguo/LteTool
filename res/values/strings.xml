@@ -17,6 +17,13 @@
 	<string name="radio_api3">API 3 (datalen=6)</string>
 	<string name="radio_api4">API 4 Type command :</string>
 	<string name="radio_run">RUN</string>
+
+        <string name="connect_ftp">connect FTP</string>
+        <string name="set_user_name">set user name</string>
+        <string name="set_password">set password</string>
+        <string name="login_ftp">login FTP</string>
+        <string name="retrieve_ftp_file">retrieve FTP file</string>
+
         <string name="log_usio">1. set usb io</string>
 	<string name="log_enabled">2. Enable trace port</string>
         <string name="log_start">3. Log start</string>

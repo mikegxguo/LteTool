@@ -159,6 +159,70 @@ public class RilOemHookTest extends Activity {
 			CmdRespText.setText("---Wait response---");
 		}
 	}
+        public void onFTPConnect(View view) {
+                if(true) {
+                    String[] oemhookstring = { "AT+UFTP=0,\"221.224.29.14\"" + '\r' };
+                    // Create message
+                    Message msg = mHandler
+                                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+                    // Send request
+                    mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+                    CmdRespText = (EditText) findViewById(R.id.edit_response);
+                    CmdRespText.setText("AT+UFTP=0,\"221.224.29.14\"\n---Wait response---");
+                }
+        }
+
+        public void onFTPUser(View view) {
+                if(true) {
+                    String[] oemhookstring = { "AT+UFTP=2,\"PDA\"" + '\r' };
+                    // Create message
+                    Message msg = mHandler
+                                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+                    // Send request
+                    mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+                    CmdRespText = (EditText) findViewById(R.id.edit_response);
+                    CmdRespText.setText("AT+UFTP=2,\"PDA\"\n---Wait response---");
+                }
+        }
+
+        public void onFTPPassword(View view) {
+                if(true) {
+                    String[] oemhookstring = { "AT+UFTP=3,\"sc0ncs\"" + '\r' };
+                    // Create message
+                    Message msg = mHandler
+                                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+                    // Send request
+                    mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+                    CmdRespText = (EditText) findViewById(R.id.edit_response);
+                    CmdRespText.setText("AT+UFTP=3,\"sc0ncs\"\n---Wait response---");
+                }
+        }
+
+        public void onFTPCLogin(View view) {
+                if(true) {
+                    String[] oemhookstring = { "AT+UFTPC=1" + '\r' };
+                    // Create message
+                    Message msg = mHandler
+                                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+                    // Send request
+                    mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+                    CmdRespText = (EditText) findViewById(R.id.edit_response);
+                    CmdRespText.setText("AT+UFTPC=1\n---Wait response---");
+                }
+        }
+
+        public void onFTPCRetrieve(View view) {
+                if(true) {
+                    String[] oemhookstring = { "AT+UFTPC=4,\"Temp/NTAU1_v1707_5001.md5\",\"NTAU1_v1707_5001.md5\"" + '\r' };
+                    // Create message
+                    Message msg = mHandler
+                                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+                    // Send request
+                    mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+                    CmdRespText = (EditText) findViewById(R.id.edit_response);
+                    CmdRespText.setText("AT+UFTPC=4,\"Temp/NTAU1_v1707_5001.md5\",\"NTAU1_v1707_5001.md5\"\n---Wait response---");
+                }
+        }
 
         public void onLogUSIO(View view) {
                 if(curstate == 0) {
