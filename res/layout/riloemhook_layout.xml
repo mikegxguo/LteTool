@@ -80,52 +80,12 @@
         android:minWidth="200dip"
         android:textColor="#FFFFFF"
         android:textSize="12px" />
-    <Button
-        android:id="@+id/FTPConnect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_response"
-        android:clickable="true"
-        android:onClick="onFTPconnect"
-        android:text="@string/connect_ftp" />
-    <Button
-        android:id="@+id/FTPUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/FTPConnect"
-        android:clickable="true"
-        android:onClick="onFTPUser"
-        android:text="@string/set_user_name" />
-    <Button
-        android:id="@+id/FTPPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/FTPUser"
-        android:clickable="true"
-        android:onClick="onFTPPassword"
-        android:text="@string/set_password" />
-    <Button
-        android:id="@+id/FTPCLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/FTPPassword"
-        android:clickable="true"
-        android:onClick="onFTPCLogin"
-        android:text="@string/login_ftp" />
-    <Button
-        android:id="@+id/FTPCRetrieve"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/FTPCLogin"
-        android:clickable="true"
-        android:onClick="onFTPCRetrieve"
-        android:text="@string/retrieve_ftp_file" />
 
     <Button
         android:id="@+id/LogUSIO"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/FTPConnect"
+        android:layout_below="@+id/edit_response"
         android:clickable="true"
         android:onClick="onLogUSIO"
         android:text="@string/log_usio" />
@@ -134,15 +94,25 @@
         android:id="@+id/LogEnabled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LogUSIO"
+        android:layout_below="@+id/edit_response"
+        android:layout_toRightOf="@+id/LogUSIO"
         android:clickable="true"
         android:onClick="onLogEnabled"
         android:text="@string/log_enabled" />
     <Button
+        android:id="@+id/LogDisabled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_response"
+        android:layout_toRightOf="@+id/LogEnabled"
+        android:clickable="true"
+        android:onClick="onLogDisabled"
+        android:text="@string/log_disabled" />
+    <Button
         android:id="@+id/LogStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LogEnabled"
+        android:layout_below="@+id/LogUSIO"
         android:clickable="true"
         android:onClick="onLogStart"
         android:text="@string/log_start" />
@@ -150,7 +120,7 @@
         android:id="@+id/LogStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LogEnabled"
+        android:layout_below="@+id/LogUSIO"
         android:layout_toRightOf="@+id/LogStart"
         android:clickable="true"
         android:onClick="onLogStop"
@@ -159,24 +129,16 @@
         android:id="@+id/LogAuto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LogEnabled"
+        android:layout_below="@+id/LogUSIO"
         android:layout_toRightOf="@+id/LogStop"
         android:clickable="true"
         android:onClick="onLogAuto"
         android:text="@string/log_auto" />
     <Button
-        android:id="@+id/LogDisabled"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/LogStart"
-        android:clickable="true"
-        android:onClick="onLogDisabled"
-        android:text="@string/log_disabled" />
-    <Button
         android:id="@+id/Disconnect3G"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LogDisabled"
+        android:layout_below="@+id/LogStart"
         android:clickable="true"
         android:onClick="onDisconnect3G"
         android:text="@string/disconnect_3g" />
@@ -184,7 +146,7 @@
         android:id="@+id/Connect3G"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LogDisabled"
+        android:layout_below="@+id/LogStart"
         android:layout_toRightOf="@+id/Disconnect3G"
         android:clickable="true"
         android:onClick="onConnect3G"
@@ -206,5 +168,50 @@
         android:clickable="true"
         android:onClick="onDisableDataWkup"
         android:text="@string/disable_data_wkup" />
+
+    <Button
+        android:id="@+id/FTPConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/EnableDataWkup"
+        android:clickable="true"
+        android:onClick="onFTPconnect"
+        android:text="@string/connect_ftp" />
+    <Button
+        android:id="@+id/FTPUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/EnableDataWkup"
+        android:layout_toRightOf="@+id/FTPConnect"
+        android:clickable="true"
+        android:onClick="onFTPUser"
+        android:text="@string/set_user_name" />
+    <Button
+        android:id="@+id/FTPPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/EnableDataWkup"
+        android:layout_toRightOf="@+id/FTPUser"
+        android:clickable="true"
+        android:onClick="onFTPPassword"
+        android:text="@string/set_password" />
+    <Button
+        android:id="@+id/FTPCLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/EnableDataWkup"
+        android:layout_toRightOf="@+id/FTPPassword"
+        android:clickable="true"
+        android:onClick="onFTPCLogin"
+        android:text="@string/login_ftp" />
+    <Button
+        android:id="@+id/FTPCRetrieve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/EnableDataWkup"
+        android:layout_toRightOf="@+id/FTPCLogin"
+        android:clickable="true"
+        android:onClick="onFTPCRetrieve"
+        android:text="@string/retrieve_ftp_file" />
 
 </RelativeLayout>
