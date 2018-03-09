@@ -241,7 +241,9 @@ public class RilOemHookTest extends Activity {
 	public void onLogEnabled(View view) {
             if(curstate==1 || curstate ==5) {
 	        //String[] oemhookstring = { "AT+TRACE=1,921600" + '\r' };//LISA U200
-                String[] oemhookstring = { "AT+USYSTRACE=0,\"bb_sw=1\",\"bb_sw=sdl:th,tr,st,pr,mo,lt,db,li,gt,ae|fts:sdl(gprs,umts)|lte_stk:0x01,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF|lte_stk:0x02,0x801FFFFF|ims:1\",\"oct=4\",921600" + '\r' }; //LARA R211
+            //    String[] oemhookstring = { "AT+USYSTRACE=0,\"bb_sw=1\",\"bb_sw=sdl:th,tr,st,pr,mo,lt,db,li,gt,ae|fts:sdl(gprs,umts)|lte_stk:0x01,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF|lte_stk:0x02,0x801FFFFF|ims:1\",\"oct=4\",921600" + '\r' }; //LARA R211
+            //AT+TRACE=1,460800,,,,,"CDC-ACM"
+            String[] oemhookstring = { "AT+TRACE=1,460800,,,,,\"CDC-ACM\"" + '\r' };//TOBY-L2
 	        // Create message
 	        Message msg = mHandler
 			.obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
@@ -285,8 +287,8 @@ public class RilOemHookTest extends Activity {
 
 	public void onLogDisabled(View view) {
                 if(curstate == 4) {
-		    //String[] oemhookstring = { "AT+TRACE=0" + '\r' };
-                    String[] oemhookstring = { "AT+USYSTRACE=0" + '\r' }; //LARA R211
+		            String[] oemhookstring = { "AT+TRACE=0" + '\r' };//TOBY-L2
+            //        String[] oemhookstring = { "AT+USYSTRACE=0" + '\r' }; //LARA R211
 		    // Create message
 		    Message msg = mHandler
 				.obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
