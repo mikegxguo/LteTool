@@ -168,14 +168,13 @@
         android:clickable="true"
         android:onClick="onDisableDataWkup"
         android:text="@string/disable_data_wkup" />
-
     <Button
         android:id="@+id/FTPConnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/EnableDataWkup"
         android:clickable="true"
-        android:onClick="onFTPconnect"
+        android:onClick="onFTPConnect"
         android:text="@string/connect_ftp" />
     <Button
         android:id="@+id/FTPUser"

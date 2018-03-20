@@ -161,40 +161,40 @@ public class RilOemHookTest extends Activity {
 	}
         public void onFTPConnect(View view) {
                 if(true) {
-                    String[] oemhookstring = { "AT+UFTP=0,\"221.224.29.14\"" + '\r' };
+                    String[] oemhookstring = { "AT+UFTP=0,\"221.224.29.28\"\r" };
                     // Create message
                     Message msg = mHandler
                                 .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
                     // Send request
                     mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
                     CmdRespText = (EditText) findViewById(R.id.edit_response);
-                    CmdRespText.setText("AT+UFTP=0,\"221.224.29.14\"\n---Wait response---");
+                    CmdRespText.setText("AT+UFTP=0,\"221.224.29.28\"\n---Wait response---");
                 }
         }
 
         public void onFTPUser(View view) {
                 if(true) {
-                    String[] oemhookstring = { "AT+UFTP=2,\"PDA\"" + '\r' };
+                    String[] oemhookstring = { "AT+UFTP=2,\"MKL-IA-PE\"\r" };
                     // Create message
                     Message msg = mHandler
                                 .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
                     // Send request
                     mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
                     CmdRespText = (EditText) findViewById(R.id.edit_response);
-                    CmdRespText.setText("AT+UFTP=2,\"PDA\"\n---Wait response---");
+                    CmdRespText.setText("AT+UFTP=2,\"MKL-IA-PE\"\n---Wait response---");
                 }
         }
 
         public void onFTPPassword(View view) {
                 if(true) {
-                    String[] oemhookstring = { "AT+UFTP=3,\"sc0ncs\"" + '\r' };
+                    String[] oemhookstring = { "AT+UFTP=3,\"pe@exchange\"\r" };
                     // Create message
                     Message msg = mHandler
                                 .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
                     // Send request
                     mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
                     CmdRespText = (EditText) findViewById(R.id.edit_response);
-                    CmdRespText.setText("AT+UFTP=3,\"sc0ncs\"\n---Wait response---");
+                    CmdRespText.setText("AT+UFTP=3,\"pe@exchange\"\n---Wait response---");
                 }
         }
 
