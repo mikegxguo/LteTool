@@ -24,7 +24,7 @@
         <string name="login_ftp">login FTP</string>
         <string name="retrieve_ftp_file">retrieve FTP file</string>
 
-        <string name="log_usio">1. set usb io</string>
+        <string name="log_init">1. Init</string>
 	<string name="log_enabled">2. Enable trace port</string>
         <string name="log_start">3. Log start</string>
         <string name="log_stop">4. Log stop</string>

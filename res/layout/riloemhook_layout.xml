@@ -82,20 +82,20 @@
         android:textSize="12px" />
 
     <Button
-        android:id="@+id/LogUSIO"
+        android:id="@+id/LogInit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_response"
         android:clickable="true"
-        android:onClick="onLogUSIO"
-        android:text="@string/log_usio" />
+        android:onClick="onLogInit"
+        android:text="@string/log_init" />
 
     <Button
         android:id="@+id/LogEnabled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_response"
-        android:layout_toRightOf="@+id/LogUSIO"
+        android:layout_toRightOf="@+id/LogInit"
         android:clickable="true"
         android:onClick="onLogEnabled"
         android:text="@string/log_enabled" />
@@ -112,7 +112,7 @@
         android:id="@+id/LogStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LogUSIO"
+        android:layout_below="@+id/LogInit"
         android:clickable="true"
         android:onClick="onLogStart"
         android:text="@string/log_start" />
@@ -120,7 +120,7 @@
         android:id="@+id/LogStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LogUSIO"
+        android:layout_below="@+id/LogInit"
         android:layout_toRightOf="@+id/LogStart"
         android:clickable="true"
         android:onClick="onLogStop"
@@ -129,7 +129,7 @@
         android:id="@+id/LogAuto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LogUSIO"
+        android:layout_below="@+id/LogInit"
         android:layout_toRightOf="@+id/LogStop"
         android:clickable="true"
         android:onClick="onLogAuto"
