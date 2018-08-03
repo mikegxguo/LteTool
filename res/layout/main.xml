@@ -26,6 +26,22 @@
     </PreferenceScreen>
     
     <PreferenceScreen
+        android:title="@string/testing_trace_log" >
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.mitac.lte"
+            android:targetClass="com.mitac.lte.trace" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:title="@string/testing_FOTA" >
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.mitac.lte"
+            android:targetClass="com.mitac.lte.fota" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
         android:title="@string/testing_RF_Power_Reduction" >
         <intent
             android:action="android.intent.action.MAIN"

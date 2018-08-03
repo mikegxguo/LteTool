@@ -1,12 +1,9 @@
 package com.mitac.lte;
 
-//import com.mitac.android.common.UsbControl;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
@@ -21,13 +18,10 @@ import android.os.SystemProperties;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.lang.*;
 
 
-public class RilOemHookTest extends Activity {
-    private static final String LOG_TAG = "RILOemHookTestApp";
-    private RadioButton mRadioButtonAPI1 = null;
-    private RadioGroup mRadioGroupAPI = null;
+public class fota extends Activity {
+    private static final String TAG = "FOTA";
     private Phone mPhone = null;
     private EditText CmdRespText = null;
     private static final int EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE = 1300;
@@ -35,35 +29,15 @@ public class RilOemHookTest extends Activity {
     private static final int EVENT_UNSOL_RIL_OEM_HOOK_RAW = 500;
     private static final int EVENT_UNSOL_RIL_OEM_HOOK_STR = 600;
     private static final int EVENT_RIL_SET_URING = 700;
-    private static int curstate = 0;
 
     @Override
         public void onCreate(Bundle icicle) {
             super.onCreate(icicle);
-            setContentView(R.layout.riloemhook_layout);
-            mRadioButtonAPI1 = (RadioButton) findViewById(R.id.radio_api1);
-            mRadioGroupAPI = (RadioGroup) findViewById(R.id.radio_group_api);
-            // Initially turn on first button.
-            mRadioButtonAPI1.toggle();
+            setContentView(R.layout.fota_layout);
             // Get our main phone object.
             mPhone = PhoneFactory.getDefaultPhone();
             // Register for OEM raw notification.
             // mPhone.mCM.setOnUnsolOemHookRaw(mHandler,EVENT_UNSOL_RIL_OEM_HOOK_RAW, null);
-            // Capture text edit key press
-            CmdRespText = (EditText) findViewById(R.id.edit_cmdstr);
-            CmdRespText.setOnKeyListener(new OnKeyListener() {
-                    public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    // If the event is a key-down event on the "enter" button
-                    if ((event.getAction() == KeyEvent.ACTION_DOWN)
-                        && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // Perform action on key press
-                    Toast.makeText(RilOemHookTest.this, CmdRespText.getText(),
-                        Toast.LENGTH_SHORT).show();
-                    return true;
-                    }
-                    return false;
-                    }
-                    });
         }
 
     @Override
@@ -82,69 +56,68 @@ public class RilOemHookTest extends Activity {
             // mPhone.mCM.setOnUnsolOemHookRaw(mHandler,EVENT_UNSOL_RIL_OEM_HOOK_RAW, null);
         }
 
-    public void onRun(View view) {
-        // Get the checked button
-        int idButtonChecked = mRadioGroupAPI.getCheckedRadioButtonId();
-        // Get the response field
-        CmdRespText = (EditText) findViewById(R.id.edit_response);
-        byte[] oemhook = null;
-        switch (idButtonChecked) {
-            case R.id.radio_api1:
-                oemhook = new byte[1];
-                oemhook[0] = (byte) 0xAA;
-                break;
-            case R.id.radio_api2:
-                oemhook = new byte[2];
-                oemhook[0] = (byte) 0xBB;
-                oemhook[1] = (byte) 0x55;
-                break;
-            case R.id.radio_api3:
-                // Send OEM notification (just echo the data bytes)
-                oemhook = new byte[7];
-                oemhook[0] = (byte) 0xCC;
-                oemhook[1] = (byte) 0x12;
-                oemhook[2] = (byte) 0x34;
-                oemhook[3] = (byte) 0x56;
-                oemhook[4] = (byte) 0x78;
-                oemhook[5] = (byte) 0x9A;
-                oemhook[6] = (byte) 0xBC;
-                break;
-            case R.id.radio_api4:
-                // Send OEM command string
-                break;
-            default:
-                log("unknown button selected");
-                break;
-        }
-        if (idButtonChecked != R.id.radio_api4) {
-            //Message msg = mHandler
-            //		.obtainMessage(EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE);
-            //mPhone.invokeOemRilRequestRaw(oemhook, msg);
-            //CmdRespText.setText("");
+    public void onFTPConnect(View view) {
+        if(true) {
+            String[] oemhookstring = { "AT+UFTP=0,\"221.224.29.28\"\r" };
+            // Create message
+            Message msg = mHandler
+                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+            // Send request
+            mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
             CmdRespText = (EditText) findViewById(R.id.edit_response);
-            CmdRespText.setText("---Not support yet---");
-        } else {
-            // Copy string from EditText and add carriage return
-            String[] oemhookstring = {
-                ((EditText) findViewById(R.id.edit_cmdstr)).getText().toString() + '\r'};
-            //String[] oemhookstring = new String[2];
-            //oemhookstring[0] = ((EditText) findViewById(R.id.edit_cmdstr)).getText().toString() + '\r';
-            //oemhookstring[1] = "AT\r";
+            CmdRespText.setText("AT+UFTP=0,\"221.224.29.28\"\n---Wait response---");
+        }
+    }
 
-            log("############################# oemhookstring: "+oemhookstring[0]);
-            CharSequence strAT="AT";
-            if(oemhookstring[0].contains(strAT)) {
-                // Create message
-                Message msg = mHandler
-                    .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
-                // Send request
-                mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
-                CmdRespText = (EditText) findViewById(R.id.edit_response);
-                CmdRespText.setText("---Wait response---");
-            } else {
-                CmdRespText = (EditText) findViewById(R.id.edit_response);
-                CmdRespText.setText("---Not support yet---");
-            }
+    public void onFTPUser(View view) {
+        if(true) {
+            String[] oemhookstring = { "AT+UFTP=2,\"MKL-IA-PE\"\r" };
+            // Create message
+            Message msg = mHandler
+                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+            // Send request
+            mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+            CmdRespText = (EditText) findViewById(R.id.edit_response);
+            CmdRespText.setText("AT+UFTP=2,\"MKL-IA-PE\"\n---Wait response---");
+        }
+    }
+
+    public void onFTPPassword(View view) {
+        if(true) {
+            String[] oemhookstring = { "AT+UFTP=3,\"pe@exchange\"\r" };
+            // Create message
+            Message msg = mHandler
+                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+            // Send request
+            mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+            CmdRespText = (EditText) findViewById(R.id.edit_response);
+            CmdRespText.setText("AT+UFTP=3,\"pe@exchange\"\n---Wait response---");
+        }
+    }
+
+    public void onFTPCLogin(View view) {
+        if(true) {
+            String[] oemhookstring = { "AT+UFTPC=1" + '\r' };
+            // Create message
+            Message msg = mHandler
+                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+            // Send request
+            mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+            CmdRespText = (EditText) findViewById(R.id.edit_response);
+            CmdRespText.setText("AT+UFTPC=1\n---Wait response---");
+        }
+    }
+
+    public void onFTPCRetrieve(View view) {
+        if(true) {
+            String[] oemhookstring = { "AT+UFTPC=4,\"Temp/NTAU1_v1707_5001.md5\",\"NTAU1_v1707_5001.md5\"" + '\r' };
+            // Create message
+            Message msg = mHandler
+                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+            // Send request
+            mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+            CmdRespText = (EditText) findViewById(R.id.edit_response);
+            CmdRespText.setText("AT+UFTPC=4,\"Temp/NTAU1_v1707_5001.md5\",\"NTAU1_v1707_5001.md5\"\n---Wait response---");
         }
     }
 
@@ -217,7 +190,7 @@ public class RilOemHookTest extends Activity {
     }
 
     private void log(String msg) {
-        Log.d(LOG_TAG, "[RIL_HOOK_OEM_TESTAPP] " + msg);
+        Log.d(TAG, "[RIL_HOOK_OEM_TESTAPP] " + msg);
     }
 
     private Handler mHandler = new Handler() {

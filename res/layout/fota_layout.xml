@@ -1,0 +1,82 @@
+﻿<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/label_preface"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/FOTA_intro" />
+
+    <Button
+        android:id="@+id/FTPConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_below="@+id/label_preface"
+        android:clickable="true"
+        android:onClick="onFTPConnect"
+        android:text="@string/connect_ftp" />
+
+    <Button
+        android:id="@+id/FTPUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_below="@+id/FTPConnect"
+        android:clickable="true"
+        android:onClick="onFTPUser"
+        android:text="@string/set_user_name" />
+
+    <Button
+        android:id="@+id/FTPPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_below="@+id/FTPUser"
+        android:clickable="true"
+        android:onClick="onFTPPassword"
+        android:text="@string/set_password" />
+
+    <Button
+        android:id="@+id/FTPCLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_below="@+id/FTPPassword"
+        android:clickable="true"
+        android:onClick="onFTPCLogin"
+        android:text="@string/login_ftp" />
+
+    <Button
+        android:id="@+id/FTPCRetrieve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_below="@+id/FTPCLogin"
+        android:clickable="true"
+        android:onClick="onFTPCRetrieve"
+        android:text="@string/retrieve_ftp_file" />
+
+    <TextView
+        android:id="@+id/label_response"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FTPCRetrieve"
+        android:text="@string/ril_oem_response" />
+
+    <EditText
+        android:id="@+id/edit_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_response"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:background="#000000"
+        android:editable="false"
+        android:minHeight="50dip"
+        android:minWidth="200dip"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

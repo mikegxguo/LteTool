@@ -24,12 +24,11 @@
         <string name="login_ftp">login FTP</string>
         <string name="retrieve_ftp_file">retrieve FTP file</string>
 
-        <string name="log_init">1. Init</string>
+    <string name="log_init">1. Init</string>
 	<string name="log_enabled">2. Enable trace port</string>
-        <string name="log_start">3. Log start</string>
-        <string name="log_stop">4. Log stop</string>
-        <string name="log_auto">5. Log Automatically</string>
-        <string name="log_disabled">6. Disable trace port</string>
+    <string name="log_start">3. Start</string>
+    <string name="log_stop">4. Stop</string>
+    <string name="log_disabled">5. Disable trace port</string>
 
         <string name="disconnect_3g">Disconnect 3G</string>
         <string name="connect_3g">Connect 3G</string>
@@ -38,7 +37,7 @@
 
 	<!-- For AT command(Power reducing)  -->
 	<string name="testing_RF_Power_Reduction">GSM/3G RF Power Reduction</string>
-        <string name="psensor_status">PSensor Status:none</string>
+    <string name="psensor_status">PSensor Status:none</string>
 	<string name="strAT_UDCONF">AT+UDCONF: Multi-Slot Power Reduction profile setting</string>
 	<string name="strGPRS">1. GPRS profile, range(0~3)</string>
 	<string name="strEDGE">2. EDGE profile, range(0~3)</string>
@@ -54,5 +53,10 @@
 	<string name="str_hint_3"></string>
 	<string name="strAT_UDCONF_run">Save parameter of AT command</string>
 	<string name="ril_oem_response">Module response:</string>
+
+    <string name="testing_trace_log">Capture trace log</string>
+    <string name="testing_FOTA">FOTA(Firmware on the Air)</string>
+    <string name="FOTA_intro">Check points:\n1. Project: UlmoPro\n2. Module: Lisa U200\n</string>
+    <string name="trace_preface">Check points:\n1. Modem interface: USB\n2. Log position: /mnt/sdcard/ulog/\n3. Don\'t exit this UI or kill this APK while capturing trace log\n4. Hide it by pressing Home key, show it by pressing \"Recent APP\" key\n</string>
 
 </resources>

@@ -1,12 +1,9 @@
 package com.mitac.lte;
 
-//import com.mitac.android.common.UsbControl;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
@@ -21,13 +18,12 @@ import android.os.SystemProperties;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.lang.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 
-public class RilOemHookTest extends Activity {
-    private static final String LOG_TAG = "RILOemHookTestApp";
-    private RadioButton mRadioButtonAPI1 = null;
-    private RadioGroup mRadioGroupAPI = null;
+public class trace extends Activity {
+    private static final String TAG = "TRACE";
     private Phone mPhone = null;
     private EditText CmdRespText = null;
     private static final int EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE = 1300;
@@ -36,34 +32,37 @@ public class RilOemHookTest extends Activity {
     private static final int EVENT_UNSOL_RIL_OEM_HOOK_STR = 600;
     private static final int EVENT_RIL_SET_URING = 700;
     private static int curstate = 0;
+    private Handler rilhandler = new Handler();
+    private Runnable rillog = new Runnable() {
+        public void run() {
+            if(curstate==3) {
+                SystemProperties.set("gsm.ulog", "stop");
+                curstate = 4;
+                rilhandler.removeCallbacks(rillog);
+                rilhandler.postDelayed(rillog, 5000);
+            }
+            else if(curstate==2 || curstate==4) {
+                SystemProperties.set("gsm.ulog.service.init", "start");
+                curstate = 3;
+                rilhandler.removeCallbacks(rillog);
+                rilhandler.postDelayed(rillog, 1800000);
+            }
+        }
+    };
 
     @Override
         public void onCreate(Bundle icicle) {
             super.onCreate(icicle);
-            setContentView(R.layout.riloemhook_layout);
-            mRadioButtonAPI1 = (RadioButton) findViewById(R.id.radio_api1);
-            mRadioGroupAPI = (RadioGroup) findViewById(R.id.radio_group_api);
+            setContentView(R.layout.trace_layout);
+
             // Initially turn on first button.
-            mRadioButtonAPI1.toggle();
             // Get our main phone object.
             mPhone = PhoneFactory.getDefaultPhone();
             // Register for OEM raw notification.
             // mPhone.mCM.setOnUnsolOemHookRaw(mHandler,EVENT_UNSOL_RIL_OEM_HOOK_RAW, null);
-            // Capture text edit key press
-            CmdRespText = (EditText) findViewById(R.id.edit_cmdstr);
-            CmdRespText.setOnKeyListener(new OnKeyListener() {
-                    public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    // If the event is a key-down event on the "enter" button
-                    if ((event.getAction() == KeyEvent.ACTION_DOWN)
-                        && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // Perform action on key press
-                    Toast.makeText(RilOemHookTest.this, CmdRespText.getText(),
-                        Toast.LENGTH_SHORT).show();
-                    return true;
-                    }
-                    return false;
-                    }
-                    });
+            //stop trace log
+            SystemProperties.set("gsm.ulog", "stop");
+            curstate = 0;
         }
 
     @Override
@@ -79,89 +78,97 @@ public class RilOemHookTest extends Activity {
             super.onResume();
             log("onResume()");
             // Register for OEM raw notification.
-            // mPhone.mCM.setOnUnsolOemHookRaw(mHandler,EVENT_UNSOL_RIL_OEM_HOOK_RAW, null);
+            // mPhone.mCM.setOnUnsolOemHookRaw(mHandler,EVENT_UNSOL_RIL_OEM_HOOK_RAW,
+            // null);
         }
 
-    public void onRun(View view) {
-        // Get the checked button
-        int idButtonChecked = mRadioGroupAPI.getCheckedRadioButtonId();
-        // Get the response field
-        CmdRespText = (EditText) findViewById(R.id.edit_response);
-        byte[] oemhook = null;
-        switch (idButtonChecked) {
-            case R.id.radio_api1:
-                oemhook = new byte[1];
-                oemhook[0] = (byte) 0xAA;
-                break;
-            case R.id.radio_api2:
-                oemhook = new byte[2];
-                oemhook[0] = (byte) 0xBB;
-                oemhook[1] = (byte) 0x55;
-                break;
-            case R.id.radio_api3:
-                // Send OEM notification (just echo the data bytes)
-                oemhook = new byte[7];
-                oemhook[0] = (byte) 0xCC;
-                oemhook[1] = (byte) 0x12;
-                oemhook[2] = (byte) 0x34;
-                oemhook[3] = (byte) 0x56;
-                oemhook[4] = (byte) 0x78;
-                oemhook[5] = (byte) 0x9A;
-                oemhook[6] = (byte) 0xBC;
-                break;
-            case R.id.radio_api4:
-                // Send OEM command string
-                break;
-            default:
-                log("unknown button selected");
-                break;
-        }
-        if (idButtonChecked != R.id.radio_api4) {
-            //Message msg = mHandler
-            //		.obtainMessage(EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE);
-            //mPhone.invokeOemRilRequestRaw(oemhook, msg);
-            //CmdRespText.setText("");
+
+    public void onLogInit(View view) {
+        if(curstate == 0) {
+            (new File("/mnt/sdcard/ulog")).mkdirs();
+
+            String[] oemhookstring = { "AT" + '\r' };
+            // Create message
+            Message msg = mHandler
+                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+            // Send request
+            mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
             CmdRespText = (EditText) findViewById(R.id.edit_response);
-            CmdRespText.setText("---Not support yet---");
-        } else {
-            // Copy string from EditText and add carriage return
-            String[] oemhookstring = {
-                ((EditText) findViewById(R.id.edit_cmdstr)).getText().toString() + '\r'};
-            //String[] oemhookstring = new String[2];
-            //oemhookstring[0] = ((EditText) findViewById(R.id.edit_cmdstr)).getText().toString() + '\r';
-            //oemhookstring[1] = "AT\r";
-
-            log("############################# oemhookstring: "+oemhookstring[0]);
-            CharSequence strAT="AT";
-            if(oemhookstring[0].contains(strAT)) {
-                // Create message
-                Message msg = mHandler
-                    .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
-                // Send request
-                mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
-                CmdRespText = (EditText) findViewById(R.id.edit_response);
-                CmdRespText.setText("---Wait response---");
-            } else {
-                CmdRespText = (EditText) findViewById(R.id.edit_response);
-                CmdRespText.setText("---Not support yet---");
-            }
+            CmdRespText.setText("---Wait response---");
+            curstate = 1;
         }
     }
 
-    public int Reset3GPower(int enable) {
-        int result = 0;
-        try {
-            FileWriter fw = new FileWriter("/sys/module/lte_power/parameters/lte_enable");
-            fw.write(enable);
-            fw.flush();
-            fw.close();
-        }catch(IOException e){
-            e.printStackTrace();
-            log("Reset power of 3G module, IOException error");
-            result = -1;
+    public void onLogEnabled(View view) {
+        if(curstate==1 || curstate ==5) {
+            //String[] oemhookstring = { "AT+TRACE=1,921600" + '\r' };//LISA U200
+            String[] oemhookstring = { "AT+USYSTRACE=0,\"bb_sw=1\",\"bb_sw=sdl:th,tr,st,pr,mo,lt,db,li,gt,ae|fts:sdl(gprs,umts)|lte_stk:0x01,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF|lte_stk:0x02,0x801FFFFF|ims:1\",\"oct=4\",921600" + '\r' }; //LARA R211
+            //AT+TRACE=1,460800,,,,,"CDC-ACM"
+            //String[] oemhookstring = { "AT+TRACE=1,460800,,,,,\"CDC-ACM\"" + '\r' };//TOBY-L2
+            // Create message
+            Message msg = mHandler
+                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+            // Send request
+            mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+            CmdRespText = (EditText) findViewById(R.id.edit_response);
+            CmdRespText.setText("---Wait response---");
+            curstate = 2;
         }
-        return result;
     }
+
+    public void onLogStart(View view) {
+        if(curstate==2 || curstate==4) {
+            SystemProperties.set("gsm.ulog.service.init", "start");
+            curstate = 3;
+            //Toast.makeText(trace.this, "Start ulog service", Toast.LENGTH_LONG).show();
+            CmdRespText = (EditText) findViewById(R.id.edit_response);
+            CmdRespText.setText("---Start ulog service---");
+            return ;
+        }
+    }
+
+    public void onLogStop(View view) {
+        if(curstate==3) {
+            SystemProperties.set("gsm.ulog", "stop");
+            curstate = 4;
+            rilhandler.removeCallbacks(rillog);
+            //Toast.makeText(trace.this, "Stop ulog service", Toast.LENGTH_LONG).show();
+            CmdRespText = (EditText) findViewById(R.id.edit_response);
+            CmdRespText.setText("---Stop ulog service---");
+            return ;
+        }
+    }
+
+    public void onLogAuto(View view) {
+        if(curstate==3) {
+            SystemProperties.set("gsm.ulog", "stop");
+            curstate = 4;
+            rilhandler.removeCallbacks(rillog);
+            rilhandler.postDelayed(rillog, 5000);
+        }
+        else if(curstate==2 || curstate==4) {
+            SystemProperties.set("gsm.ulog.service.init", "start");
+            curstate = 3;
+            rilhandler.removeCallbacks(rillog);
+            rilhandler.postDelayed(rillog, 1800000);
+        }
+    }
+
+    public void onLogDisabled(View view) {
+        if(curstate == 4) {
+            //String[] oemhookstring = { "AT+TRACE=0" + '\r' };//TOBY-L2
+            String[] oemhookstring = { "AT+USYSTRACE=0" + '\r' }; //LARA R211
+            // Create message
+            Message msg = mHandler
+                .obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+            // Send request
+            mPhone.invokeOemRilRequestStrings(oemhookstring, msg);
+            CmdRespText = (EditText) findViewById(R.id.edit_response);
+            CmdRespText.setText("---Wait response---");
+            curstate = 0;
+        }
+    }
+
 
     private void logRilOemHookResponse(AsyncResult ar) {
         log("received oem hook response");
@@ -217,7 +224,7 @@ public class RilOemHookTest extends Activity {
     }
 
     private void log(String msg) {
-        Log.d(LOG_TAG, "[RIL_HOOK_OEM_TESTAPP] " + msg);
+        Log.d(TAG, "trace: " + msg);
     }
 
     private Handler mHandler = new Handler() {

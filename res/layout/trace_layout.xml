@@ -1,0 +1,83 @@
+﻿<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/label_trace"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/trace_preface" />
+
+    <Button
+        android:id="@+id/LogInit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_below="@+id/label_trace"
+        android:clickable="true"
+        android:onClick="onLogInit"
+        android:text="@string/log_init" />
+
+    <Button
+        android:id="@+id/LogEnabled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_below="@+id/LogInit"
+        android:clickable="true"
+        android:onClick="onLogEnabled"
+        android:text="@string/log_enabled" />
+
+    <Button
+        android:id="@+id/LogStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_below="@+id/LogEnabled"
+        android:clickable="true"
+        android:onClick="onLogStart"
+        android:text="@string/log_start" />
+
+    <Button
+        android:id="@+id/LogStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_below="@+id/LogEnabled"
+        android:layout_toRightOf="@+id/LogStart"
+        android:clickable="true"
+        android:onClick="onLogStop"
+        android:text="@string/log_stop" />
+
+    <Button
+        android:id="@+id/LogDisabled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_below="@+id/LogStart"
+        android:clickable="true"
+        android:onClick="onLogDisabled"
+        android:text="@string/log_disabled" />
+
+    <TextView
+        android:id="@+id/label_response"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LogDisabled"
+        android:text="@string/ril_oem_response" />
+
+    <EditText
+        android:id="@+id/edit_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_response"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:background="#000000"
+        android:editable="false"
+        android:minHeight="50dip"
+        android:minWidth="200dip"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>
