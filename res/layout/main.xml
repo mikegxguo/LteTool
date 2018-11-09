@@ -26,6 +26,14 @@
     </PreferenceScreen>
     
     <PreferenceScreen
+        android:title="@string/testing_imei" >
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.mitac.lte"
+            android:targetClass="com.mitac.lte.imei" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
         android:title="@string/testing_trace_log" >
         <intent
             android:action="android.intent.action.MAIN"

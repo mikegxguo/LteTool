@@ -32,6 +32,16 @@
                 <category android:name="android.intent.category.DEVELOPMENT_PREFERENCE" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".imei"
+            android:label="@string/testing_imei"
+            android:process="com.android.phone">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEVELOPMENT_PREFERENCE" />
+            </intent-filter>
+        </activity>
+
         <activity android:name="PowerReduction"
             android:label="@string/testing_RF_Power_Reduction"
             android:process="com.android.phone">

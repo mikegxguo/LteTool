@@ -59,4 +59,9 @@
     <string name="FOTA_intro">Check points:\n1. Project: UlmoPro\n2. Module: Lisa U200\n</string>
     <string name="trace_preface">Check points:\n1. Modem interface: USB\n2. Log position: /mnt/sdcard/ulog/\n3. Don\'t exit this UI or kill this APK while capturing trace log\n4. Hide it by pressing Home key, show it by pressing \"Recent APP\" key\n</string>
 
+
+    <string name="testing_imei">IMEI</string>
+    <string name="imei_preface">Check points:\n1. Offical TAC number is 35433910\n2. This is only supported in Chiron project\n</string>
+    <string name="read_imei">Read IMEI</string>
+    <string name="change_imei">Change IMEI</string>
 </resources>
